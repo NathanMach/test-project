@@ -1,9 +1,10 @@
 import React from 'react'
-import Bikes from './bike'
+import Bike from './bike'
+
 
 function UserList(props) {
-    const bikeMap = props.selectedBike.map((bike) => (
-        <bike
+    const bikeMap = props.bikeSelect((bike) => (
+        <Bike
         key={bike.id}
         saveName={props.saveName}
         deleteBike={props.deleteBike}
@@ -13,6 +14,8 @@ function UserList(props) {
         <div>
             <h2>Garage</h2>
             <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}></div>
+            {bikeMap}
+            <button onClick={() => this.props.deleteBike(this.props.data.id)}>Delete</button>
         </div>
     )
 }

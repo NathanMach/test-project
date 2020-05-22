@@ -1,30 +1,17 @@
-const axios = require('axios')
+const bikes = require('./data')
 
 module.exports = {
     getFourRandomBikes: (req, res) => {
-        const rand1 = Math.ceil(Math.random() * 6)
-        const rand2 = Math.ceil(Math.random() * 6)
-        const rand3 = Math.ceil(Math.random() * 6)
-        const rand4 = Math.ceil(Math.random() * 6)
-
-        const baseUrl = './data/data'
-
-        axios.get(baseUrl + rand1).then((response1) => {
-            bikeListArray.push(response1.data)
-
-            axios.get(baseUrl + rand2).then((response2) => {
-                bikeListArray.push(response2.data)
-
-                axios.get(baseUrl + rand3).then((response3) => {
-                    bikeListArray.push(response3.data)
-
-                    axios.get(baseUrl + rand4).then((response4) => {
-                        bikeListArray.push(response4.data)
-
-                        res.status(200).send(bikeListArray)
-                      })
-                 })
-            })
-        })
-     }
-}    
+        const rand1 = Math.floor(Math.random() * 5)
+        const rand2 = Math.floor(Math.random() * 5)
+        const rand3 = Math.floor(Math.random() * 5)
+        const rand4 = Math.floor(Math.random() * 5)
+        const responseArr = [
+         bikes[rand1],
+         bikes[rand2],
+         bikes[rand3],
+         bikes[rand4],
+        ]
+        res.status(200).send(responseArr)
+    }
+}   

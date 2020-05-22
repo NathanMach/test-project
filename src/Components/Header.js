@@ -7,3 +7,5 @@ function BikeBrands(props) {
         </header>    
     )
 }
+
+export default BikeBrands

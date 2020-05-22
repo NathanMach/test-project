@@ -1,7 +1,7 @@
-const bikes =[
+module.exports = [
     {
     make:'Yamaha',
-    model: 'R1', 
+    model: 'R1M', 
     year: 2015
 },
     {

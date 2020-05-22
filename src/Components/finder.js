@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Bike from './bike'
 import axios from 'axios'
 
 class Finder extends Component {
@@ -35,3 +34,5 @@ class Finder extends Component {
         )
     }
 }            
+
+export default Finder

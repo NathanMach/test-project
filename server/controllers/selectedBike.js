@@ -3,7 +3,7 @@ let id = 1
 
 module.exports = {
     getSelectedBikes: (req, res) => {
-        res.status(200).send(bikes)
+        res.status(200).send(bike)
     },
     selectBike: (req, res) => {
         const { name, image } = req.body
@@ -14,26 +14,26 @@ module.exports = {
 
         id++
 
-        res.status(200).send(bikes)
+        res.status(200).send(bike)
     },
     editBikesName: (req, res) => {
-        const { bike_id } = req.params
-        const { newName }= req.body
+        const { id } = req.params
+        const { name }= req.body
         
-        const index = bike.findIndex((element) => element.id === +bike_id)
+        const index = bike.findIndex((element) => element.id === +id)
 
         if (index === -1) {
             return res.status(404).send('Bike not found')
         }
 
-        bike[index].name = newBike
+        bike[index].name = name
 
         res.status(200).send(bike)
     },
     deleteBikes: (req, res) => {
-        const { bike_id } = req.params
+        const { id } = req.params
 
-        const index = bike.findIndex((element) => element.id === +bike_id)
+        const index = bike.findIndex((element) => element.id === +id)
 
         if (index === -1) {
             return res.status(404).send('Bike not found')

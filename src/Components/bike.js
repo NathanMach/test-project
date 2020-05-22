@@ -5,6 +5,7 @@ class Bike extends Component {
         super(props)
         this.state= {
             bikeClicked: false,
+            
         }
     }
     checkBike() {
@@ -27,4 +28,4 @@ class Bike extends Component {
     }
 }
 
-export default bike
+export default Bike
