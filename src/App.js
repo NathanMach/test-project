@@ -1,26 +1,69 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import data from './data/data';
+import bike from './Components/bike'
+import userList from './Components/userList'
+import Finder from './Components/finder'
 import './App.css';
+import axios from 'axios'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component{
+  constructor(){
+    super()
+    this.state = {
+      data: []
+    }
+    this.bike = this.bike.bind(this)
+    this.saveName = this.saveName.bind(this)
+    this.deleteBike = this.deleteBike.bind(this)
+  }
+  componentDidMount() {
+    axios.get('/api/data').then((res) => {
+      this.ListeningStateChangedEvent({
+        userList: res.data
+      })
+    })
+  }
+
+  bikeSelect(name, image) {
+    const body = { name, image }
+    axios.post('/api/data', body).then((res) => {
+      this.setState({
+        bikeSelect: res.data,
+      })
+    })
+  }
+  
+  saveName(id, newName) {
+    const body = { newName }
+    axios.put(`/api/data/${id}`, body).then((res) => {
+      this.setState({
+        bikeSelect: res.data,
+      })
+    })
+  }
+  deleteBike(id){
+    axios.delete(`/api/data/${id}`).then((res) => {
+      this.setState({
+      bikeSelect: res.data,
+      })
+    })
+  }
+
+  render(){
+    return (
+      <div className= 'App'>
+        <Header />
+        <Finder bikeSelect={this.bikeSelect} />
+        <userList
+        bikeSelect={this.state.bikeSelect}
+        saveName={this.saveName}
+        deleteBike={this.deleteBike}
+        />
+      </div>
+    )
+  }
 }
+
 
 export default App;
